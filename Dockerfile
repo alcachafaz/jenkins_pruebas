@@ -1,0 +1,10 @@
+FROM jenkins/jenkins:2.370-alpine-jdk17
+USER root
+RUN apk update
+RUN apk upgrade
+RUN apk --no-cache add curl curl-doc docker docker-cli docker-engine docker-compose-bash-completion docker-compose docker-credential-ecr-login-doc podman-docker-doc docker-registry docker-credential-ecr-login dockerpy-creds
+RUN apk add jenkins
+USER jenkins
+RUN jenkins-plugin-cli --plugins "blueocean:1.25.8 docker-workflow:521.v1a_a_dd2073b_2e"
+
+
